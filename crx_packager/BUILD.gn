@@ -1,0 +1,49 @@
+
+import("//build/config/chrome_build.gni")
+import("//build/config/ui.gni")
+import("//chrome/process_version_rc_template.gni")
+
+
+static_library("zip") {
+  sources = [
+    "zip.cc",
+    "zip.h",
+    "zip_internal.cc",
+    "zip_internal.h",
+    "zip_writer.cc",
+    "zip_writer.h",
+  ]
+  deps = [
+    "//base",
+    "//third_party/zlib:minizip",
+  ]
+}
+
+executable("crx_packager") {
+  sources = [
+    "crx_packager.cc",
+    "extension_creator.cc",
+    "extension_creator.h",
+    "extension_creator_filter.cc",
+    "extension_creator_filter.h",
+    "${branding_path_component}_behaviors.cc",
+    "brand_behaviors.h",
+  ]
+
+  deps = [
+    ":version_resources",
+    ":zip",
+    "//base",
+    "//components/crx_file",
+    "//components/crx_file:crx_creator",
+    "//build:branding_buildflags",
+    "//build/win:default_exe_manifest",
+  ]
+
+  #libs = [ "xxx.lib" ]
+}
+
+process_version_rc_template("version_resources") {
+  sources = [ "crx_packager.ver" ]
+  output = "$target_gen_dir/crx_packager.rc"
+}

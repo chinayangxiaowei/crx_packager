@@ -1,0 +1,4 @@
+PRODUCT_FULLNAME=crx_packager
+PRODUCT_SHORTNAME=crx_packager
+INTERNAL_NAME=crx_packager
+ORIGINAL_FILENAME=crx_packager.exe
