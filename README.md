@@ -2,8 +2,6 @@
 
 A crx packaging tool, but dependent on the chromium project.
 
-
-
 ##### Build Instructions:
 
 1. The following code will be inserted at the end of the chromium/src/BUILD.gn file.
@@ -19,4 +17,10 @@ group("crx_packager"){
 
 ```bash
 autoninja -C out\Release_x64 crx_packager
+```
+
+##### Usage:
+
+```bash
+crx_packager --extension-path='extension source path' --pem-path='pem file path' --crx-path='crx file path'
 ```
